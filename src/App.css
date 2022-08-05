@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes iconScroll {
+  0% {
+    bottom: 10vh;
+    opacity: 1;
+  }
+  70% {
+    bottom: 80vh;
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    animation-delay: 6s;
+  }
+}

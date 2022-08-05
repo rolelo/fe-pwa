@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import { Grid, Typography } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 
 const CurveContainer = styled.div`
+  z-index: -1;
   position: absolute;
   height: 50vh;
   background-color: #121212;
@@ -15,11 +16,41 @@ const CurveContainer = styled.div`
   }
 `;
 
+const IconContainer = styled.div`
+  & i {
+    opacity: 0;
+    font-size: 5rem;
+    position: absolute;
+    right: 0px;
+    width: 48px;
+    height: 48px;
+    transform: translateX(-15vw);
+    color: white;
+    animation: iconScroll 6s infinite;
+
+    @media(max-width: 600px) {
+      font-size: 3rem;
+    }
+  }
+`;
+
 const Home = () => {
   return (
-    <Grid item xs={12}>
-      <Grid item xs={12} md={8} padding={{ xs: 0, md: 8 }}>
-        <Typography variant="h1">Accelerate your career, <br /> get the job that you deserve</Typography>
+    <Grid item xs={12} rowGap={2}>
+      <IconContainer>
+        <i className="devicon-react-plain" style={{ animationDelay: '1s' }}></i>
+        <i className="devicon-angularjs-plain" style={{ animationDelay: '2s' }}></i>
+        <i className="devicon-vuejs-plain" style={{ animationDelay: '3s' }}></i>
+        <i className="devicon-graphql-plain" style={{ animationDelay: '4s' }}></i>
+        <i className="devicon-java-plain" style={{ animationDelay: '5s' }}></i>
+        <i className="devicon-php-plain" style={{ animationDelay: '6s' }}></i>
+      </IconContainer>
+      <Grid item xs={12} md={8} padding={{ xs: 0, sm: 4, md: 8 }}>
+        <Typography variant="h1" color="white">Accelerate your career, <br /> get the job that <i><b>you</b></i> deserve</Typography>
+        <Box sx={{ marginTop: 4, display: "flex", flexGrow: "1", gap: 2 }}>
+          <Button variant='contained' sx={{ fontSize: { sm: '1.1rem' } }}>Get Started</Button>
+          <Button variant='outlined' sx={{ fontSize: { sm: '1.1rem' } }}>How it works</Button>
+        </Box>
       </Grid>
       <CurveContainer>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
