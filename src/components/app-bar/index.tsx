@@ -34,7 +34,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="sticky" color='primary' sx={{ marginBottom: "32px" }} >
+    <AppBar position="sticky" color='primary' sx={{ marginBottom: "32px", backgroundImage: 'none' }}>
       <Container maxWidth="xl">
         <Toolbar>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'none' } }}>

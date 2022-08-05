@@ -10,9 +10,9 @@ const theme = createTheme({
 });
 
 theme.typography.h1 = {
-  fontSize: "2rem",
+  fontSize: "3rem",
   [theme.breakpoints.down("md")]: {
-    fontSize: "1.5rem",
+    fontSize: "1.8rem",
   },
 };
 theme.typography.h2 = {
