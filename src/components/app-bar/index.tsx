@@ -1,17 +1,14 @@
-import * as React from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
 import Logo from "../../assets/logo.png";
 
 const pages = ['Products', 'Pricing', 'Blog'];
@@ -37,10 +34,10 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static" color='primary'>
+    <AppBar position="sticky" color='primary' sx={{ marginBottom: "32px" }} >
       <Container maxWidth="xl">
         <Toolbar>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -111,11 +108,12 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
+            <Button variant='outlined' sx={{ marginRight: "8px" }} color='primary'>
+              Sign Up
+            </Button>
+            <Button variant='contained' color="secondary">
+              Login
+            </Button>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -141,7 +139,7 @@ const ResponsiveAppBar = () => {
           </Box>
         </Toolbar>
       </Container>
-    </AppBar>
+    </AppBar >
   );
 };
 export default ResponsiveAppBar;
