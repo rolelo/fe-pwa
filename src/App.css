@@ -39,7 +39,7 @@
 
 @keyframes iconScroll {
   0% {
-    bottom: 10vh;
+    bottom: 30vh;
     opacity: 1;
   }
   70% {
