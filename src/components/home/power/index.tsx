@@ -1,70 +1,82 @@
-import { Box, Button, Grid, Typography } from '@mui/material'
-import React from 'react'
+import { AccessibilityNewOutlined, Mail, SentimentSatisfied, VisibilityOffOutlined } from '@mui/icons-material';
+import { Avatar, Box, Divider, Grid, Typography } from '@mui/material';
+import theme from '../../../static/theme';
 
-import CheckList from "../../../assets/checklist.png";
 
 const Power = () => {
   return (
-    <Grid container xs={12} rowGap={2} padding={{ sx: 2, sm: 3, md: 4 }}>
-      <Grid item md={3}></Grid>
-      <Grid item xs={12} md={6}>
-        <Box sx={{
-          boxShadow: '2px 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0)',
-          borderRadius: '5px',
-          border: '2px solid black',
-          display: "flex",
-          flexDirection: {
-            xs: 'column',
-            sm: 'row',
-          },
-          gap: {
-            xs: 2,
-            sm: 4,
-          },
-          padding: {
-            xs: 2,
-            sm: 3,
-          },
-        }}>
-          <Box sx={{
-            flex: 1,
-            display: "flex",
-            flexDirection: "column",
-            gap: {
-              xs: 2,
-              sm: 3,
-            },
-            marginTop: {
-              sm: 2,
-            },
-          }}>
-            <div>
-              <Typography variant="h4">Decide what you want</Typography>
-              <Typography variant="h2">Find a job that is tailored to your needs</Typography>
-            </div>
-            <Typography variant="body1">
-              It's time to give back power to the job seekers, not the job posters. Configure the job you desire, and get connected
-              with companies that are a perfect match.
-            </Typography>
-            <Button variant='contained' sx={{ fontSize: { sm: '1.1rem' }, width: "fit-content" }} color="secondary">Find My Ideal Job Now</Button>
-          </Box>
-          <Box sx={{
-            flex: 1,
-            overflow: "hidden",
-          }}>
-            <Box sx={{
-              width: { xs: "50%", sm: "100%", display: "inline-block" }, position: "relative", right: "-100%", transform: {
-                xs: "translate(-82%, 14%)",
-                sm: "translate(-46%, 24%)"
-              }
-            }}>
-              <img src={CheckList} alt="checklist" style={{ width: "100%", maxWidth: "250px" }} />
-            </Box>
-          </Box>
-        </Box>
+    <Grid container xs={12} rowGap={4}
+      paddingLeft={{ xs: 4, sm: 6, md: 8, lg: 30 }}
+      paddingRight={{ xs: 4, sm: 6, md: 8, lg: 30 }}
+      paddingTop={{ xs: 4, sm: 6, md: 8 }}
+      paddingBottom={{ xs: 4, sm: 6, md: 8 }}
+      sx={{
+        backgroundColor: theme.palette.background.default
+      }}>
+      <Grid item xs={12}>
+        <Typography variant="h1">Giving back power to the job seekers</Typography>
+        <Typography variant="body1" sx={{ paddingTop: 2 }}>
+          Recruitment is normally a daunting task, both for job seekers and hiring managers.
+          <br />
+          Our mission is to simplify the process of recruitment by removing all intermediaries and allowing you to get in touch
+          with the hiring managers directly.
+        </Typography>
       </Grid>
-      <Grid md={3}></Grid>
-    </Grid >
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <Avatar color="secondary">
+              <AccessibilityNewOutlined color="action" />
+            </Avatar>
+            <Typography variant="h3">High Flexibility</Typography>
+            <Typography variant="body1">
+              Our service offers you the opportunity to customise your dream job. We will then filter out all of the available jobs that
+              meet your expectations based on the criteria which you have provided.
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <Avatar color="secondary">
+              <SentimentSatisfied color="action" />
+            </Avatar>
+            <Typography variant="h3">Simple Application</Typography>
+            <Typography variant="body1">
+              All of our jobs include a simple application process. All you need to do is to create an account, upload your CV and then
+              you can available positions with one click.
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <Avatar color="secondary">
+              <Mail color="action" />
+            </Avatar>
+            <Typography variant="h3">Fast Responses</Typography>
+            <Typography variant="body1">
+              As we completely remove all 3rd parties and middlemen in the hiring process, you will be connecting directly with the companies hiring manager.
+              This allows for better and faster communication between both parties.
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <Avatar color="secondary">
+              <VisibilityOffOutlined color="action" />
+            </Avatar>
+            <Typography variant="h3">No Hidden Surprises</Typography>
+            <Typography variant="body1">
+              All of our positions come with full detailed explanation regarding the salary, working policy (remote, hybrid etc),
+              number of interview stages, and number of applicants for this position.
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
+      {/* <Grid item xs={12} paddingTop={{ xs: 2, sm: 3, md: 4 }}
+        paddingBottom={{ xs: 2, sm: 3, md: 4 }}>
+        <Divider sx={{ backgroundColor: theme.palette.background.paper }} />
+      </Grid> */}
+    </Grid>
   )
 }
 
