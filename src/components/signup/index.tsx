@@ -39,7 +39,7 @@ const SignUp = () => {
         <Button variant="contained" type="submit" fullWidth size="large">Register</Button>
         <Divider />
         <div className="contentHolder">
-          <Typography variant="body1">Don`&apos`t have an account?</Typography>
+          <Typography variant="body1">Dont have an account?</Typography>
           <Link to="/auth/login">Log In</Link>
         </div>
         <Typography variant="body1">Or</Typography>
