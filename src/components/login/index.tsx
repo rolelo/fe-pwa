@@ -6,6 +6,9 @@ import {
 import GoogleButton from 'react-google-button';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
+import Amplify from '../../services/Amplify';
 
 const CustomForm = styled('form')({
   width: '100%',
@@ -26,15 +29,30 @@ const CustomForm = styled('form')({
   },
 });
 
+type Login = {
+  email: string;
+  password: string;
+}
+
 const Login: React.FC = () => {
-  const { handleSubmit, register } = useForm();
+  const mutation = useMutation(({ email, password }: Login) => Amplify.login(email, password), {
+    onSuccess: () => {
+      toast.success('Successfully logged in');
+    },
+    onError: (error) => {
+      toast.error(error instanceof Error ? error.message : 'Login Error');
+    },
+  });
+  const { handleSubmit, register, formState: { errors, isValid } } = useForm({
+    mode: 'onBlur',
+  });
 
   return (
     <Fade in timeout={600}>
-      <CustomForm onSubmit={handleSubmit((data) => console.log(data))}>
+      <CustomForm onSubmit={handleSubmit((data) => mutation.mutate(data as Login))}>
         <h1>Log In</h1>
-        <TextField label="Username" variant="filled" fullWidth {...register('username')} />
-        <TextField label="Password" variant="filled" fullWidth {...register('password')} />
+        <TextField label="Username" variant="filled" fullWidth {...register('email')} />
+        <TextField label="Password" variant="filled" fullWidth {...register('password')} type="password" />
         <Button variant="contained" type="submit" fullWidth size="large">Login</Button>
         <Divider />
         <div className="contentHolder">

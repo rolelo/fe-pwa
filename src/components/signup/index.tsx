@@ -12,7 +12,7 @@ import { useMutation } from 'react-query';
 import Amplify from '../../services/Amplify';
 import type { SignUp as SUT } from '../../models/signup';
 
-const CustomForm = styled('form')({
+export const CustomForm = styled('form')({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
@@ -42,16 +42,10 @@ const validationSchema = yup.object().shape({
 const SignUp: React.FC = () => {
   const mutation = useMutation((data: SUT) => Amplify.signUp(data));
   const { handleSubmit, register, formState: { errors, isValid } } = useForm({
-    mode: 'onChange',
+    mode: 'onBlur',
     resolver: yupResolver(validationSchema),
   });
 
-  React.useEffect(() => {
-    const subscription = Amplify.userSubject.subscribe((data) => {
-      console.log(data, 'amir');
-    });
-    return () => subscription.unsubscribe();
-  }, []);
   return (
     <Fade in timeout={600}>
       <CustomForm onSubmit={handleSubmit((data) => mutation.mutate(data as SUT))}>

@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import React, { PropsWithChildren } from 'react';
-import { Outlet } from 'react-router-dom';
+import React from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import AppLogo from '../../assets/logo.png';
+import Amplify from '../../services/Amplify';
 
 const Container = styled('div')({
   height: '100vh',
@@ -26,15 +27,29 @@ const Wrapper = styled('div')({
   },
 });
 
-type Props = PropsWithChildren;
-
-const Auth: React.FC<Props> = ({ children }) => (
-  <Container>
-    <Wrapper>
-      <img src={AppLogo} alt="Rolelo" title="Rolelo" />
-      <Outlet />
-    </Wrapper>
-  </Container>
-);
+const Auth: React.FC = () => {
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    const subscription = Amplify.userSubject.subscribe((user) => {
+      if (user?.userConfirmed === false) navigate('/auth/confirm');
+    });
+    const userSignedInSubscription = Amplify.userSignedIn.subscribe((b) => {
+      if (b === false) navigate('/auth/login');
+      if (b === true) navigate('/dashboard');
+    });
+    return () => {
+      subscription.unsubscribe();
+      userSignedInSubscription.unsubscribe();
+    };
+  }, []);
+  return (
+    <Container>
+      <Wrapper>
+        <img src={AppLogo} alt="Rolelo" title="Rolelo" />
+        <Outlet />
+      </Wrapper>
+    </Container>
+  );
+};
 
 export default Auth;

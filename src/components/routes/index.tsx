@@ -3,18 +3,32 @@ import { useRoutes } from 'react-router-dom';
 import Auth from '../auth';
 import Login from '../login';
 import SignUp from '../signup';
+import Confirm from '../confirm';
+import PrivateRoute from '../private-route';
+import Home from '../home';
 
 const Routes = () => {
   const element = useRoutes([
     {
-      path: '/auth',
-      element: <Auth />,
+      path: '/',
+      element: <PrivateRoute />,
       children: [{
-        path: 'login',
-        element: <Login />,
+        path: 'auth',
+        element: <Auth />,
+        children: [{
+          path: 'login',
+          element: <Login />,
+        }, {
+          path: 'signup',
+          element: <SignUp />,
+        }, {
+          path: 'confirm',
+          element: <Confirm />,
+        }],
       }, {
-        path: 'signup',
-        element: <SignUp />,
+        index: true,
+        path: 'dashboard',
+        element: <Home />,
       }],
     },
   ]);
