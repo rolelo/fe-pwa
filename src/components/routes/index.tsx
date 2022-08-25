@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRoutes } from 'react-router-dom';
 import Auth from '../auth';
 import Login from '../login';
@@ -6,18 +7,18 @@ import SignUp from '../signup';
 const Routes = () => {
   const element = useRoutes([
     {
-      path: "/auth",
+      path: '/auth',
       element: <Auth />,
       children: [{
-        path: "login",
-        element: <Login />
+        path: 'login',
+        element: <Login />,
       }, {
         path: 'signup',
-        element: <SignUp />
-      }]
-    }
+        element: <SignUp />,
+      }],
+    },
   ]);
   return element;
-}
+};
 
 export default Routes;
