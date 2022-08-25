@@ -1,6 +1,6 @@
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const env = require(`../config.${process.env.REACT_APP_ENV}.json`);
+const env = require(`./config.${process.env.REACT_APP_ENV}.json`);
 interface CognitoConfig {
   poolId: string;
   clientId: string;
