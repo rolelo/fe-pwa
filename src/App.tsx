@@ -12,7 +12,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes />
-        <ToastContainer />
+        <ToastContainer position="bottom-right" />
       </BrowserRouter>
     </ThemeProvider>
   );

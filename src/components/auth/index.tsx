@@ -13,6 +13,9 @@ const Container = styled('div')({
   transform: 'translateY(-4rem)',
 });
 const Wrapper = styled('div')({
+  borderRadius: '1rem',
+  padding: '3rem',
+  backgroundColor: 'white',
   width: '35rem',
   display: 'flex',
   flexDirection: 'column',
@@ -35,7 +38,10 @@ const Auth: React.FC = () => {
     });
     const userSignedInSubscription = Amplify.userSignedIn.subscribe((b) => {
       if (b === false) navigate('/auth/login');
-      if (b === true) navigate('/dashboard');
+      if (b === true) {
+        Amplify.userSignedIn.next(null);
+        navigate('/dashboard');
+      }
     });
     return () => {
       subscription.unsubscribe();
@@ -44,7 +50,7 @@ const Auth: React.FC = () => {
   }, []);
   return (
     <Container>
-      <Wrapper>
+      <Wrapper className="box-shadow">
         <img src={AppLogo} alt="Rolelo" title="Rolelo" />
         <Outlet />
       </Wrapper>

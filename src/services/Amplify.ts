@@ -62,6 +62,10 @@ async function login(email: string, password: string) {
   await Auth.signIn(email, password);
 }
 
+async function signOut() {
+  await Auth.signOut();
+}
+
 export default {
   userSubject,
   userSignedIn,
@@ -70,4 +74,5 @@ export default {
   resendConfirmationCode,
   verifyUser,
   login,
+  signOut,
 };

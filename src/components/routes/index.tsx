@@ -6,6 +6,7 @@ import SignUp from '../signup';
 import Confirm from '../confirm';
 import PrivateRoute from '../private-route';
 import Home from '../home';
+import DashboardLayout from '../dashboard/layout';
 
 const Routes = () => {
   const element = useRoutes([
@@ -26,9 +27,13 @@ const Routes = () => {
           element: <Confirm />,
         }],
       }, {
-        index: true,
         path: 'dashboard',
-        element: <Home />,
+        element: <DashboardLayout />,
+        children: [{
+          path: '',
+          index: true,
+          element: <Home />,
+        }],
       }],
     },
   ]);
