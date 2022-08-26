@@ -5,11 +5,12 @@ const instance = axios.create({
   baseURL: 'http://localhost:8080/',
 });
 
-instance.interceptors.request.use((config) => {
+instance.interceptors.request.use(async (config) => {
   const newConfig = { ...config };
+  const jwtToken = await Amplify.verifyUser();
   newConfig.headers = {
     ...newConfig.headers,
-    Authorization: Amplify.userAccessToken.getValue(),
+    authorization: jwtToken,
   };
 
   return newConfig;
