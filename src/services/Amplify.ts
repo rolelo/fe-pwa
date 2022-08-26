@@ -1,11 +1,19 @@
 import { Auth } from '@aws-amplify/auth';
-import type { ISignUpResult } from 'amazon-cognito-identity-js';
+import type { ISignUpResult, CognitoUser } from 'amazon-cognito-identity-js';
 import { BehaviorSubject } from 'rxjs';
 import { Hub } from 'aws-amplify';
 import type { SignUp } from '../models/signup';
 
+export type UserAttributes = {
+  email: string;
+  email_verified: boolean;
+  name: string;
+  phone_number_verified: boolean;
+  sub: string;
+}
 const userSubject = new BehaviorSubject<ISignUpResult | null>(null);
 const userSignedIn = new BehaviorSubject<boolean | null>(null);
+const userInfo = new BehaviorSubject<UserAttributes | null>(null);
 async function signUp({
   email,
   name,
@@ -32,11 +40,11 @@ async function signUp({
 }
 
 Hub.listen('auth', ({ payload }) => {
-  const { event } = payload;
-  console.log(event);
+  const { event, data } = payload;
   if (event === 'autoSignIn' || event === 'signIn') {
     // assign user
     userSignedIn.next(true);
+    userInfo.next({ ...data.attributes });
   } else if (event === 'autoSignIn_failure') {
     userSignedIn.next(false);
   }
@@ -53,6 +61,8 @@ async function resendConfirmationCode(email: string) {
 
 async function verifyUser() {
   const user = await Auth.currentSession();
+  const ui = await Auth.currentUserInfo();
+  userInfo.next({ ...ui.attributes });
   if (!user.isValid()) {
     throw Error('Invalid User');
   }
@@ -69,6 +79,7 @@ async function signOut() {
 export default {
   userSubject,
   userSignedIn,
+  userInfo,
   signUp,
   confirmSignUp,
   resendConfirmationCode,

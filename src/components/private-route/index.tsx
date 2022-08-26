@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { useMutation } from 'react-query';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import Amplify from '../../services/Amplify';
+import Amplify, { UserAttributes } from '../../services/Amplify';
+
+export const UserInformationContext = React.createContext<UserAttributes | null>(null);
 
 const PrivateRoute: React.FC = () => {
+  const [userAttributes, setUserAttributes] = React.useState<UserAttributes | null>(null);
   const navigator = useNavigate();
   const location = useLocation();
   const { mutate } = useMutation(() => Amplify.verifyUser(), {
@@ -16,9 +19,17 @@ const PrivateRoute: React.FC = () => {
 
   useEffect(() => {
     mutate();
+
+    const userAttributesSubscription = Amplify.userInfo.subscribe((ui) => {
+      setUserAttributes(ui);
+    });
+
+    return () => userAttributesSubscription.unsubscribe();
   }, [location.pathname]);
   return (
-    <Outlet />
+    <UserInformationContext.Provider value={userAttributes}>
+      <Outlet />
+    </UserInformationContext.Provider>
   );
 };
 

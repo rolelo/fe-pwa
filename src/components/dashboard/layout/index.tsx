@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import { Fade } from '@mui/material';
+import { Fade, Typography } from '@mui/material';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { useUserInfo } from '../../../hooks';
 import Navigation from '../../navigation';
 
 const Container = styled('div')({
@@ -18,12 +19,17 @@ const Container = styled('div')({
 });
 
 const DashboardLayout: React.FC = () => {
-  const x = 2;
+  const userInfo = useUserInfo();
   return (
     <Fade in timeout={600}>
       <Container>
         <Navigation />
         <div className="wrapper">
+          <Typography variant="h1" style={{ margin: '0', fontWeight: '500', fontSize: '3.5rem' }}>
+            Welcome back,
+            {' '}
+            {userInfo?.name}
+          </Typography>
           <Outlet />
         </div>
       </Container>

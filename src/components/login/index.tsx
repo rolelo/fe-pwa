@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {
-  Button, Divider, Fade, TextField, Typography,
+  Backdrop,
+  Button, CircularProgress, Divider, Fade, TextField, Typography,
 } from '@mui/material';
 import GoogleButton from 'react-google-button';
 import { useForm } from 'react-hook-form';
@@ -53,7 +54,15 @@ const Login: React.FC = () => {
         <h1>Log In</h1>
         <TextField label="Username" variant="filled" fullWidth {...register('email')} />
         <TextField label="Password" variant="filled" fullWidth {...register('password')} type="password" />
-        <Button variant="contained" type="submit" fullWidth size="large">Login</Button>
+        <Button
+          variant="contained"
+          type="submit"
+          fullWidth
+          size="large"
+          disabled={mutation.isLoading}
+        >
+          Login
+        </Button>
         <Divider />
         <div className="contentHolder">
           <Typography variant="body1">Dont have an account?</Typography>
