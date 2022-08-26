@@ -14,6 +14,7 @@ export type UserAttributes = {
 const userSubject = new BehaviorSubject<ISignUpResult | null>(null);
 const userSignedIn = new BehaviorSubject<boolean | null>(null);
 const userInfo = new BehaviorSubject<UserAttributes | null>(null);
+const userAccessToken = new BehaviorSubject<string>('');
 async function signUp({
   email,
   name,
@@ -62,6 +63,7 @@ async function resendConfirmationCode(email: string) {
 async function verifyUser() {
   const user = await Auth.currentSession();
   const ui = await Auth.currentUserInfo();
+  userAccessToken.next(user.getAccessToken().getJwtToken());
   userInfo.next({ ...ui.attributes });
   if (!user.isValid()) {
     throw Error('Invalid User');
@@ -80,6 +82,7 @@ export default {
   userSubject,
   userSignedIn,
   userInfo,
+  userAccessToken,
   signUp,
   confirmSignUp,
   resendConfirmationCode,
