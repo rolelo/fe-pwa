@@ -11,6 +11,7 @@ import * as React from 'react';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useUserInfo } from '../../hooks';
 import Amplify from '../../services/Amplify';
 
 const settings = ['Profile', 'Account', 'Dashboard'];
@@ -73,6 +74,7 @@ const AvatarMenu: React.FC = () => {
 };
 
 export default function Navigation() {
+  const userInfo = useUserInfo();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -86,6 +88,11 @@ export default function Navigation() {
           >
             <MenuIcon />
           </IconButton>
+          <Typography variant="h4">
+            Welcome Back,
+            {' '}
+            {userInfo?.name}
+          </Typography>
           <Box sx={{ flexGrow: 1, justifyContent: 'flex-end', textAlign: 'right' }}>
             <AvatarMenu />
           </Box>
