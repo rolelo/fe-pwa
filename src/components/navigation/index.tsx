@@ -1,4 +1,3 @@
-import MenuIcon from '@mui/icons-material/Menu';
 import {
   Avatar, Menu, MenuItem, Tooltip,
 } from '@mui/material';
@@ -11,7 +10,7 @@ import * as React from 'react';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useUserInfo } from '../../hooks';
+import Logo from '../../assets/logo.png';
 import Amplify from '../../services/Amplify';
 
 const settings = ['Profile', 'Account', 'Dashboard'];
@@ -74,7 +73,6 @@ const AvatarMenu: React.FC = () => {
 };
 
 export default function Navigation() {
-  const userInfo = useUserInfo();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -86,13 +84,14 @@ export default function Navigation() {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <img src={Logo} alt="Rolelo" style={{ width: 25 }} />
           </IconButton>
-          <Typography variant="h4">
-            Welcome Back,
-            {' '}
-            {userInfo?.name}
-          </Typography>
+          <MenuItem key="New Listing">
+            <Typography textAlign="center">New Listing</Typography>
+          </MenuItem>
+          <MenuItem key="View All Listings">
+            <Typography textAlign="center">View All Listings</Typography>
+          </MenuItem>
           <Box sx={{ flexGrow: 1, justifyContent: 'flex-end', textAlign: 'right' }}>
             <AvatarMenu />
           </Box>
