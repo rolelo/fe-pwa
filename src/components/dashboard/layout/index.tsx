@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Fade, Typography } from '@mui/material';
+import { Fade } from '@mui/material';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useUserInfo } from '../../../hooks';
@@ -23,11 +23,6 @@ const DashboardLayout: React.FC = () => {
       <Container>
         <Navigation />
         <div className="wrapper">
-          <Typography variant="h1" style={{ margin: '0', fontWeight: '500', fontSize: '3.5rem' }}>
-            Welcome back,
-            {' '}
-            {userInfo?.name}
-          </Typography>
           <Outlet />
         </div>
       </Container>
