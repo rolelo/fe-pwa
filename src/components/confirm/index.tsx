@@ -31,6 +31,7 @@ const Confirm: React.FC = () => {
     if (!Amplify.userSubject.getValue()) {
       navigate('/');
     } else {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       setUser(Amplify.userSubject.getValue()!);
     }
   }, []);

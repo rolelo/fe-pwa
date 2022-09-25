@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { Fade } from '@mui/material';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { useUserInfo } from '../../../hooks';
 import Navigation from '../../navigation';
 
 const Container = styled('div')({
@@ -16,18 +15,15 @@ const Container = styled('div')({
   },
 });
 
-const DashboardLayout: React.FC = () => {
-  const userInfo = useUserInfo();
-  return (
-    <Fade in timeout={600}>
-      <Container>
-        <Navigation />
-        <div className="wrapper">
-          <Outlet />
-        </div>
-      </Container>
-    </Fade>
-  );
-};
+const DashboardLayout: React.FC = () => (
+  <Fade in timeout={600}>
+    <Container>
+      <Navigation />
+      <div className="wrapper">
+        <Outlet />
+      </div>
+    </Container>
+  </Fade>
+);
 
 export default DashboardLayout;

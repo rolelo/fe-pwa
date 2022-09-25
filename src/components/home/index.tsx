@@ -1,9 +1,9 @@
 import { Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 import instance from '../../utils/instance';
 
 const Home = () => {
-  useEffect(() => {
+  React.useEffect(() => {
     instance.get('/').then((d) => {
       console.log(d, 'ssss');
     });
