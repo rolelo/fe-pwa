@@ -1,6 +1,5 @@
 import { Typography } from '@mui/material';
 import React, { useEffect } from 'react';
-import Amplify from '../../services/Amplify';
 import instance from '../../utils/instance';
 
 const Home = () => {
@@ -11,7 +10,6 @@ const Home = () => {
   });
   return (
     <Typography variant="h2">Hello World</Typography>
-
   );
 };
 

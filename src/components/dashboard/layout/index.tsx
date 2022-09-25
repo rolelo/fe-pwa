@@ -6,10 +6,8 @@ import { useUserInfo } from '../../../hooks';
 import Navigation from '../../navigation';
 
 const Container = styled('div')({
-  padding: '2rem',
   display: 'flex',
-  flexDirection: 'row',
-  minHeight: '100vh',
+  flexDirection: 'column',
   height: '1px',
   boxSizing: 'border-box',
   '& > .wrapper': {

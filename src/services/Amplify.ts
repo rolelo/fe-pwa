@@ -64,10 +64,7 @@ async function verifyUser() {
   const ui = await Auth.currentUserInfo();
   userInfo.next({ ...ui.attributes });
 
-  return user.getAccessToken().getJwtToken();
-  if (!user.isValid()) {
-    throw Error('Invalidd User');
-  }
+  return user.getIdToken().getJwtToken();
 }
 
 async function login(email: string, password: string) {

@@ -10,7 +10,12 @@ const PrivateRoute: React.FC = () => {
   const navigator = useNavigate();
   const location = useLocation();
   const { mutate } = useMutation(() => Amplify.verifyUser(), {
-    onError: (error) => {
+    onSuccess: () => {
+      if (location.pathname === '/') {
+        navigator('/dashboard');
+      }
+    },
+    onError: () => {
       if (!location.pathname.includes('/auth')) {
         navigator('/auth/login');
       }

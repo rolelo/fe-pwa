@@ -52,7 +52,7 @@
     "eslint-plugin-react": "^7.23.2"
   },
   "scripts": {
-    "start": "HTTPS=true REACT_APP_ENV=dev react-scripts start",
+    "start": "REACT_APP_ENV=dev react-scripts start",
     "build": "react-scripts build",
     "build-serve": "react-scripts build && serve ./build",
     "test": "react-scripts test",
