@@ -2,6 +2,7 @@
   "name": "rolelo-fe-pwa",
   "version": "0.1.0",
   "private": true,
+  "workspaces": ["organisation", "authentication", "client"],
   "dependencies": {
     "@apollo/client": "^3.7.0",
     "@aws-amplify/auth": "^4.0.1",
@@ -60,7 +61,10 @@
     "build": "react-scripts build",
     "build-serve": "react-scripts build && serve ./build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "organisation": "yarn workspace organisation start",
+    "client": "yarn workspace client start",
+    "auth": "yarn workspace auth start"
   },
   "eslintConfig": {
     "extends": [
