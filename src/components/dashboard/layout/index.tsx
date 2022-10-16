@@ -2,7 +2,13 @@ import styled from '@emotion/styled';
 import { Fade } from '@mui/material';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import {
+  ApolloClient, ApolloProvider, createHttpLink, InMemoryCache,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import Navigation from '../../navigation';
+import environmentVars from '../../../utils/env.variables';
+import Amplify from '../../../services/Amplify';
 
 const Container = styled('div')({
   display: 'flex',
@@ -10,20 +16,38 @@ const Container = styled('div')({
   height: '1px',
   boxSizing: 'border-box',
   '& > .wrapper': {
-    padding: '2rem',
     boxSizing: 'border-box',
   },
 });
 
+const httpLink = createHttpLink({
+  uri: environmentVars.serverUrl,
+});
+const authLink = setContext(async (_, { headers }) => {
+  const token = await Amplify.verifyUser();
+  return {
+    headers: {
+      ...headers,
+      authorization: token || '',
+    },
+  };
+});
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
+
 const DashboardLayout: React.FC = () => (
-  <Fade in timeout={600}>
-    <Container>
-      <Navigation />
-      <div className="wrapper">
-        <Outlet />
-      </div>
-    </Container>
-  </Fade>
+  <ApolloProvider client={client}>
+    <Fade in timeout={600}>
+      <Container>
+        <Navigation />
+        <div className="wrapper">
+          <Outlet />
+        </div>
+      </Container>
+    </Fade>
+  </ApolloProvider>
 );
 
 export default DashboardLayout;

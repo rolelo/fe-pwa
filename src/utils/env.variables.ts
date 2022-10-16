@@ -12,6 +12,7 @@ interface EnvironmentConfig {
   REACT_APP_COGNITO: CognitoConfig;
   lambdaUrl: string;
   s3BucketUrl: string;
+  serverUrl: string;
 }
 // Default is development
 const environmentVars: EnvironmentConfig = {
@@ -23,6 +24,7 @@ const environmentVars: EnvironmentConfig = {
   },
   lambdaUrl: env.lambdaUrl,
   s3BucketUrl: env.s3BucketUrl,
+  serverUrl: env.SERVER_URL,
 };
 
 export default environmentVars;

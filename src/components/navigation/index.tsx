@@ -13,8 +13,6 @@ import { toast } from 'react-toastify';
 import Logo from '../../assets/logo.png';
 import Amplify from '../../services/Amplify';
 
-const settings = ['Profile', 'Account', 'Dashboard'];
-
 const AvatarMenu: React.FC = () => {
   const navigator = useNavigate();
   const { mutate } = useMutation(Amplify.signOut, {
@@ -59,11 +57,9 @@ const AvatarMenu: React.FC = () => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {settings.map((setting) => (
-          <MenuItem key={setting} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{setting}</Typography>
-          </MenuItem>
-        ))}
+        <MenuItem key="organisation" onClick={() => navigator('/organisation')}>
+          <Typography textAlign="center">Organisations</Typography>
+        </MenuItem>
         <MenuItem key="logout" onClick={() => mutate()}>
           <Typography textAlign="center">Logout</Typography>
         </MenuItem>

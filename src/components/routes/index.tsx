@@ -7,6 +7,7 @@ import Confirm from '../confirm';
 import PrivateRoute from '../private-route';
 import Home from '../home';
 import DashboardLayout from '../dashboard/layout';
+import Organisation from '../organisation';
 
 const Routes = () => {
   const element = useRoutes([
@@ -27,12 +28,15 @@ const Routes = () => {
           element: <Confirm />,
         }],
       }, {
-        path: 'dashboard',
+        path: '/',
         element: <DashboardLayout />,
         children: [{
-          path: '',
+          path: 'dashboard',
           index: true,
           element: <Home />,
+        }, {
+          path: 'organisation',
+          element: <Organisation />,
         }],
       }],
     },
